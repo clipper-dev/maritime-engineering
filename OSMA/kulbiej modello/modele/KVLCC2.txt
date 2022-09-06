@@ -1,0 +1,137 @@
+% MODEL STATKU DO WYKORZYSTANIA W MODELU MATEMATYCZNYM RUCHU
+% zbiornikowiec testowy ITTC KVLCC2
+% wersja modelowa o d³ugoœci 7 metrów
+1.MMSI= 345789123
+2.shipType= 1 //sluzy jedynie do zorientowania sie co to za typ statku
+%0-masowiec,1-zbiornikowiec,2-roro,3-ropax,4-kontenerowiec,5-inny
+3.pusty= 0
+4.pusty= 0
+%
+%PODSTAWOWE PARAMETRY GEOMETRYCZNE KADLUBA
+5.lengthOverall= 364
+6.lengthBetweenPerpendiculars= 320
+7.breadth= 58
+8.draught= 20.8
+9.cB= 0.8098 //wspolczynnik pelnotliwosci podwodzia/block Coefficient
+10.cM= 0.92 //midship section coefficient
+11.defSpeed= 7.99
+12.pusty= 0
+%ZAAWANSOWANE PARAMETRY GEOMETRYCZNE KADLUBA
+13.wetSurface= 27194
+14.pusty= 0
+15.pusty= 0
+16.pusty= 0
+17.pusty= 0
+%WPOLRZEDNE SRODKA CIEZKOSCI
+18.xG= 11.2 //od midshipu
+19.yG= 0 //od plaszczyzny symetrii
+20.zG= 10 //od plaszczyzny podstawowej
+%RAMIONA MOMENTOW BEZWLADNOSCI
+%momenty liczone sa ze wzoru 1/16*m*rNN^2
+%wartosci
+21.rXX= 23.2
+22.rYY= 80
+23.rZZ= 80
+24.mass= 320415000
+%MASY DODANE
+%notacja mij, i-kirunek ruchu, j-kierunek oddzia³ywania
+25.m11= 0.0751
+26.m22= 0.7611
+27.m33= 0
+28.m44= 0
+29.m55= 0
+30.m66= 0.6077
+31.m24/m42= 0
+32.m26/m62= 0
+33.m31/m13= 0
+34.m35/m53= 0
+35.m46/m64= 0
+36.m51/m15= 0
+37.pusty= 0
+38.pusty= 0
+39.pusty= 0
+40.pusty= 0
+%PARAMETRY HYDROSTATYCZNE
+41.GM= 5.70
+42.KG= 18.3
+43.pusty= 0
+44.pusty= 0
+45.pusty= 0
+46.pusty= 0
+47.pusty= 0
+48.pusty= 0
+49.pusty= 0
+50.pusty= 0
+%PARAMETRY SRUBY
+51.pitchPD= 0.721
+52.diameter= 9.86
+53.revolution= 2.15 //[1/s]
+54.kT0= 0.2931
+55.kT1= -0.2753
+56.kT2= -0.1385
+57.xPropellerND= -0.5
+58.yPropellerForceCoefficient= 0
+59.pusty= 0
+60.pusty= 0
+61.pusty= 0
+62.pusty= 0
+63.pusty= 0
+64.pusty= 0
+65.pusty= 0
+%PARAMETRY STERU
+66.rudderArea= 112.5 //m2
+67.rudderProfileCoefficient= 2.747
+68.tR= 0.387
+69.aH= 0.312
+70.xR= -0.5
+71.xH= -0.464
+72.epsilon= 1.09
+73.eta= 0.626
+74.kappa= 0.50
+75.gammaR>0= 0.64
+76.gammaR<0= 0.395
+77.lR= -0.71
+78.C1= 2
+79.C2>0= 1.6
+80.C2<0= 1.1
+81.deltaPerSecond= 0.0436 //radians
+82.pusty= 0
+83.pusty= 0
+84.pusty= 0
+85.pusty= 0
+%RUCH I STRUMIEÑ
+86.wakeFraction= 0.35
+87.thrustCoefficient= 0.220
+88.pusty= 0
+89.pusty= 0
+90.pusty= 0
+%WSPOLCZYNNIKI HYDRODYNAMICZNE
+91.R0= -0.0334
+92.Xvv= -0.040
+93.Xvr= 0.002
+94.Xrr= -0.011
+95.Xvvvv= 0.771
+96.Yv= -0.315
+97.Yr= 0.083
+98.Yvvv= -1.607
+99.Yrrr= 0.008
+100.Yvrr= -0.391
+101.Yvvr= 0.379
+102.Nv= -0.137
+103.Nr= -0.049
+104.Nvvv= -0.03
+105.Nrrr= -0.013
+106.Nvvr= -0.294
+107.Nvrr= 0.055
+108.pusty= 0
+109.pusty= 0
+110.pusty= 0
+%PARAMETRY WIETRZNE
+111.sAx= 60 //powierzchnia nawietrzna poprzeczna
+112.sAy= 350 //powierzchniaNawietrzna wzdluzna
+113.xAir= 0 //od midshipu
+114.yAir= 0 //od plaszczyzny symetrii
+115.zAir= 6 //od plaszczyzny podstawowej
+116.cAirX= -0.6
+117.cAirY= 0.8
+118.cAirN= 0.1

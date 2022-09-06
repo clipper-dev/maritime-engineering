@@ -1,0 +1,73 @@
+% MODEL STATKU DO WYKORZYSTANIA W MODELU MATEMATYCZNYM RUCHU
+% Statek badawczy AM Szczecin
+MMSI= 261187000 
+rodzajStatku= 5 //sluzy jedynie do zorientowania sie co to za typ statku
+%0-masowiec,1-zbiornikowiec,2-roro,3-ropax,4-kontenerowiec,5-inny
+%
+%PODSTAWOWE PARAMETRY GEOMETRYCZNE KADLUBA
+%dlugosc miedzy pionami - 56.8m
+dlugosc= 60.21 m
+szerokosc= 10.50 m
+zanurzenie= 3.14 m
+cB= 0.59 //wspolczynnikPelnotliwosci
+%ZAAWANSOWANE PARAMETRY GEOMETRYCZNE KADLUBA
+powierzchniaZwilzona= 672 //m2
+%RAMIONA MOMENTOW BEZWLADNOSCI
+%momenty liczone sa ze wzoru 1/16*m*rNN^2
+%wartosci to 
+rXX= 4.5
+rYY= 14
+rZZ= 14
+%WPOLRZEDNE SRODKA CIEZKOSCI
+xG= 0 //od midshipu
+yG= 0 //od plaszczyzny symetrii
+zG= 4.7 //od plaszczyzny podstawowej
+%PARAMETRY HYDROSTATYCZNE
+GM= 0.48
+KG= 4.7
+%PARAMETRY DO WYKORZYSTANIA
+a= 0 //
+b= 0 //
+c= 0 //
+d= 0 //
+%PARAMETRY SRUBY
+% pitch ratio = 0.9
+srednica= 2.26 //m
+predkoscObrotu= 3.7 //[1/s]
+kT0= 0.35
+kT1= -0.298
+kT2= -0.131
+%WSPOLCZYNNIKI HYDRODYNAMICZNE
+Xuu= -0.013
+Xvv= -0.061
+Xvr= 0.089292500000000
+Xrr= -0.0
+Xvvvv= -0.0
+Yv= -0.307 //5
+Yr= 0.062 //6
+Yvvv= -0.58 //7
+Yrrr= -0.041 //8
+Yvrr= -0.721 //9
+Yvvr= -0.38 //10
+Nv= -0.1 //11
+Nr= -0.045 //12
+Nvvv= -0.25 //13
+Nrrr= -0.03 //14
+Nvvr= -0.6 //15
+Nvrr= -0.27 //16 (41)
+%PARAMETRY STERU
+42.powierzchniaSteru= 6.5 //m2, poprawiona o korekte
+43.wakeFraction= 0.24
+44.thrustCoefficient= 0.2
+45.nnn= 0
+46.nnn= 0
+47.nnn= 0
+%PARAMETRY WIETRZNE
+48.sAx= 60 //powierzchnia nawietrzna poprzeczna
+49.sAy= 350 //powierzchniaNawietrzna wzdluzna
+50.xAir= 0 //od midshipu
+51.yAir= 0 //od plaszczyzny symetrii
+52.zAir= 6 //od plaszczyzny podstawowej
+53.cAirX= -0.6
+54.cAirY= 0.8
+55.cAirN= 0.1

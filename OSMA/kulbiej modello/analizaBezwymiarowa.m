@@ -1,0 +1,253 @@
+function GTData = analizaBezwymiarowa(vessel, shipVector, steeringVector, calculusVector, initialStateVector, environmentVector)
+%generujTrajektorie(
+%shipVector[isOwnSet - true or false, ownSet - matrix of hydrodynamic coefficients], 
+%steeringVector[engineSetting - in percent from -100 to 100; rudder from %-35 to 35]
+%calculusVector[duration - in seconds; timeStep -  >=1, defines how many iterations per second, calculusType - 0=eulerImplicit, 1=eulerExplicit, 2=rungeKutta]
+%initialStateVecor[x0, y0, z0, roll, pitch, psi0, vx0; vy0; vz0; wx0; wy0; wz0] //accelerations defined to %be zero
+%environmentVector[isWeather - true/false, weather - wx data object, isShallow - T/F, depth - value used for calculations]
+%% HULL FORCES NON-DIMENTIONALIZED
+wyniki = zeros(40,20);
+    r = .8;
+    for i=1:41
+        wyniki(i,1)=i-21;
+        betaAngle = (i-21)/57.3;
+        r = -0.8;
+        % Y'
+        wyniki(i,2) = -(vessel.Y_v*betaAngle + vessel.Y_r*r + ...
+            vessel.Y_vvv*betaAngle^3 + ...
+            vessel.Y_rrr*r^3 +...
+            vessel.Y_vrr*betaAngle*r^2+...
+            vessel.Y_vvr*betaAngle*betaAngle*r); 
+        % N'
+        wyniki(i,3) = -(vessel.N_v*betaAngle + vessel.N_r*r + ...
+            vessel.N_vvv*betaAngle^3 + ...
+            vessel.N_rrr*r^3 +...
+            vessel.N_vrr*betaAngle*r^2+...
+            vessel.N_vvr*betaAngle*betaAngle*r); 
+        r = -0.6;
+        % Y'
+        wyniki(i,4) = -(vessel.Y_v*betaAngle + vessel.Y_r*r + ...
+            vessel.Y_vvv*betaAngle^3 + ...
+            vessel.Y_rrr*r^3 +...
+            vessel.Y_vrr*betaAngle*r^2+...
+            vessel.Y_vvr*betaAngle*betaAngle*r);  
+        % N'
+        wyniki(i,5) = -(vessel.N_v*betaAngle + vessel.N_r*r + ...
+            vessel.N_vvv*betaAngle^3 + ...
+            vessel.N_rrr*r^3 +...
+            vessel.N_vrr*betaAngle*r^2+...
+            vessel.N_vvr*betaAngle*betaAngle*r); 
+        r = -0.4;
+        % Y'
+        wyniki(i,6) = -(vessel.Y_v*betaAngle + vessel.Y_r*r + ...
+            vessel.Y_vvv*betaAngle^3 + ...
+            vessel.Y_rrr*r^3 +...
+            vessel.Y_vrr*betaAngle*r^2+...
+            vessel.Y_vvr*betaAngle*betaAngle*r); 
+        % N'
+        wyniki(i,7) = -(vessel.N_v*betaAngle + vessel.N_r*r + ...
+            vessel.N_vvv*betaAngle^3 + ...
+            vessel.N_rrr*r^3 +...
+            vessel.N_vrr*betaAngle*r^2+...
+            vessel.N_vvr*betaAngle*betaAngle*r); 
+        r = -0.2;
+        % Y'
+        wyniki(i,8) = -(vessel.Y_v*betaAngle + vessel.Y_r*r + ...
+            vessel.Y_vvv*betaAngle^3 + ...
+            vessel.Y_rrr*r^3 +...
+            vessel.Y_vrr*betaAngle*r^2+...
+            vessel.Y_vvr*betaAngle*betaAngle*r); 
+        % N'
+        wyniki(i,9) = -(vessel.N_v*betaAngle + vessel.N_r*r + ...
+            vessel.N_vvv*betaAngle^3 + ...
+            vessel.N_rrr*r^3 +...
+            vessel.N_vrr*betaAngle*r^2+...
+            vessel.N_vvr*betaAngle*betaAngle*r); 
+        r = -0.0;
+        % Y'
+        wyniki(i,10) = -(vessel.Y_v*betaAngle + vessel.Y_r*r + ...
+            vessel.Y_vvv*betaAngle^3 + ...
+            vessel.Y_rrr*r^3 +...
+            vessel.Y_vrr*betaAngle*r^2+...
+            vessel.Y_vvr*betaAngle*betaAngle*r); 
+        % N'
+        wyniki(i,11) = -(vessel.N_v*betaAngle + vessel.N_r*r + ...
+            vessel.N_vvv*betaAngle^3 + ...
+            vessel.N_rrr*r^3 +...
+            vessel.N_vrr*betaAngle*r^2+...
+            vessel.N_vvr*betaAngle*betaAngle*r); 
+        r = +0.2;
+        % Y'
+        wyniki(i,12) = -(vessel.Y_v*betaAngle + vessel.Y_r*r + ...
+            vessel.Y_vvv*betaAngle^3 + ...
+            vessel.Y_rrr*r^3 +...
+            vessel.Y_vrr*betaAngle*r^2+...
+            vessel.Y_vvr*betaAngle*betaAngle*r);  
+        % N'
+        wyniki(i,13) = -(vessel.N_v*betaAngle + vessel.N_r*r + ...
+            vessel.N_vvv*betaAngle^3 + ...
+            vessel.N_rrr*r^3 +...
+            vessel.N_vrr*betaAngle*r^2+...
+            vessel.N_vvr*betaAngle*betaAngle*r); 
+        r = +0.4;
+        % Y'
+        wyniki(i,14) = -(vessel.Y_v*betaAngle + vessel.Y_r*r + ...
+            vessel.Y_vvv*betaAngle^3 + ...
+            vessel.Y_rrr*r^3 +...
+            vessel.Y_vrr*betaAngle*r^2+...
+            vessel.Y_vvr*betaAngle*betaAngle*r);  
+        % N'
+        wyniki(i,15) = -(vessel.N_v*betaAngle + vessel.N_r*r + ...
+            vessel.N_vvv*betaAngle^3 + ...
+            vessel.N_rrr*r^3 +...
+            vessel.N_vrr*betaAngle*r^2+...
+            vessel.N_vvr*betaAngle*betaAngle*r); 
+        r = +0.6;
+        % Y'
+        wyniki(i,16) = -(vessel.Y_v*betaAngle + vessel.Y_r*r + ...
+            vessel.Y_vvv*betaAngle^3 + ...
+            vessel.Y_rrr*r^3 +...
+            vessel.Y_vrr*betaAngle*r^2+...
+            vessel.Y_vvr*betaAngle*betaAngle*r); 
+        % N'
+        wyniki(i,17) = -(vessel.N_v*betaAngle + vessel.N_r*r + ...
+            vessel.N_vvv*betaAngle^3 + ...
+            vessel.N_rrr*r^3 +...
+            vessel.N_vrr*betaAngle*r^2+...
+            vessel.N_vvr*betaAngle*betaAngle*r); 
+        r = +0.8;
+        % Y'
+        wyniki(i,18) = -(vessel.Y_v*betaAngle + vessel.Y_r*r + ...
+            vessel.Y_vvv*betaAngle^3 + ...
+            vessel.Y_rrr*r^3 +...
+            vessel.Y_vrr*betaAngle*r^2+...
+            vessel.Y_vvr*betaAngle*betaAngle*r); 
+        % N'
+        wyniki(i,19) = -(vessel.N_v*betaAngle + vessel.N_r*r + ...
+            vessel.N_vvv*betaAngle^3 + ...
+            vessel.N_rrr*r^3 +...
+            vessel.N_vrr*betaAngle*r^2+...
+            vessel.N_vvr*betaAngle*betaAngle*r); 
+    end
+    figure
+    hold on;
+grid on;
+    plot(wyniki(:,1),wyniki(:,2))
+    plot(wyniki(:,1),wyniki(:,4))
+    plot(wyniki(:,1),wyniki(:,6))
+    plot(wyniki(:,1),wyniki(:,8))
+    plot(wyniki(:,1),wyniki(:,10))
+    plot(wyniki(:,1),wyniki(:,12))
+    plot(wyniki(:,1),wyniki(:,14))
+    plot(wyniki(:,1),wyniki(:,16))
+    plot(wyniki(:,1),wyniki(:,18))
+    legend("Y', r=-0.8","Y', r=-0.6","Y', r=-0.4",...
+        "Y', r=-0.2","Y', r=0.0","Y', r=0.2",...
+        "Y', r=-0.4","Y', r=0.6","Y', r=0.8");
+    hold off;
+    figure
+    hold on;
+grid on;
+    plot(wyniki(:,1),wyniki(:,3))
+    plot(wyniki(:,1),wyniki(:,5))
+    plot(wyniki(:,1),wyniki(:,7))
+    plot(wyniki(:,1),wyniki(:,9))
+    plot(wyniki(:,1),wyniki(:,11))
+    plot(wyniki(:,1),wyniki(:,13))
+    plot(wyniki(:,1),wyniki(:,15))
+    plot(wyniki(:,1),wyniki(:,17))
+    plot(wyniki(:,1),wyniki(:,19))
+    legend("N', r=-0.8","N', r=-0.6","N', r=-0.4",...
+        "N', r=-0.2","N', r=0.0","N', r=0.2",...
+        "N', r=-0.4","N', r=0.6","N', r=0.8");
+    hold off;
+%% RUDDER FORCES NON-DIMENTIONALIZED
+    wyniki2 = zeros(40,15);
+    vx = 0.601;
+    vessel.propellerRotation = 14.48;
+    for i=-7:7
+        delta=i*5;        
+        wyniki2(40,i+8)=delta;
+        Ph=vessel.forceHull(vx,0,0);
+        Pr=vessel.forceRudder(delta,vx,0,0);
+        Pp=vessel.forcePropeller(vx,0,0);
+        wyniki2(1,i+8)=Ph(1);
+        wyniki2(2,i+8)=Ph(2);
+        wyniki2(3,i+8)=Ph(3);
+        wyniki2(4,i+8)=Pr(1);
+        wyniki2(5,i+8)=Pr(2);
+        wyniki2(6,i+8)=Pr(3);
+        wyniki2(7,i+8)=Pp(1);
+        wyniki2(8,i+8)=Pp(2);
+        wyniki2(9,i+8)=Pp(3);
+    end
+    vx = 0.77;
+    vessel.propellerRotation = 17.95;
+    for i=-7:7
+        delta=i*5;
+        Ph=vessel.forceHull(vx,0,0);
+        Pr=vessel.forceRudder(delta,vx,0,0);
+        Pp=vessel.forcePropeller(vx,0,0);
+        wyniki2(10,i+8)=Ph(1);
+        wyniki2(11,i+8)=Ph(2);
+        wyniki2(12,i+8)=Ph(3);
+        wyniki2(13,i+8)=Pr(1);
+        wyniki2(14,i+8)=Pr(2);
+        wyniki2(15,i+8)=Pr(3);
+        wyniki2(16,i+8)=Pp(1);
+        wyniki2(17,i+8)=Pp(2);
+        wyniki2(18,i+8)=Pp(3);
+    end
+    vx = 1.015;
+    vessel.propellerRotation = 24.87;
+    for i=-7:7
+        delta=i*5;
+        Ph=vessel.forceHull(vx,0,0);
+        Pr=vessel.forceRudder(delta,vx,0,0);
+        Pp=vessel.forcePropeller(vx,0,0);
+        wyniki2(19,i+8)=Ph(1);
+        wyniki2(20,i+8)=Ph(2);
+        wyniki2(21,i+8)=Ph(3);
+        wyniki2(22,i+8)=Pr(1);
+        wyniki2(23,i+8)=Pr(2);
+        wyniki2(24,i+8)=Pr(3);
+        wyniki2(25,i+8)=Pp(1);
+        wyniki2(26,i+8)=Pp(2);
+        wyniki2(27,i+8)=Pp(3);
+    end
+    figure
+    hold on;
+    grid on;
+    plot(wyniki2(40,:),wyniki2(7,:),'o-')
+    plot(wyniki2(40,:),wyniki2(16,:),'s-')
+    plot(wyniki2(40,:),wyniki2(25,:),'^-')
+    legend("X_p_r_o_p_e_l_l_e_r^', n=14.48rps","X_p_r_o_p_e_l_l_e_r^'', n=17.95rps","X_p_r_o_p_e_l_l_e_r^'', n=24.87rps");
+    hold off;
+    
+    figure
+    hold on;
+    grid on;
+    plot(wyniki2(40,:),wyniki2(4,:),'o-')
+    plot(wyniki2(40,:),wyniki2(13,:),'s-')
+    plot(wyniki2(40,:),wyniki2(22,:),'^-')
+    legend("X_r_u_d_d_e_r^', n=14.48rps","X_r_u_d_d_e_r^', n=17.95rps","X_r_u_d_d_e_r^', n=24.87rps");
+    hold off;
+    
+    figure
+    hold on;
+    grid on;
+    plot(wyniki2(40,:),wyniki2(5,:),'o-')
+    plot(wyniki2(40,:),wyniki2(14,:),'s-')
+    plot(wyniki2(40,:),wyniki2(23,:),'^-')
+    legend("Y_r_u_d_d_e_r^', n=14.48rps","Y_r_u_d_d_e_r^', n=17.95rps","Y_r_u_d_d_e_r^', n=24.87rps");
+    hold off;
+    
+    figure
+    hold on;
+    grid on;
+    plot(wyniki2(40,:),wyniki2(6,:),'o-')
+    plot(wyniki2(40,:),wyniki2(15,:),'s-')
+    plot(wyniki2(40,:),wyniki2(24,:),'^-')
+    legend("N_r_u_d_d_e_r^', n=14.48rps","N_r_u_d_d_e_r^', n=17.95rps","N_r_u_d_d_e_r^', n=24.87rps");
+    hold off;
+end

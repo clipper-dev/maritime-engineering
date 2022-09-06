@@ -1,0 +1,56 @@
+% MODEL STATKU DO WYKORZYSTANIA W MODELU MATEMATYCZNYM RUCHU
+% MASOWIEC PZM
+% wzorowany na Armii Krajowej
+MMSI= 123456789
+rodzajStatku= 0 //sluzy jedynie do zorientowania sie co to za typ statku
+%0-masowiec,1-zbiornikowiec,2-roro,3-ropax,4-kontenerowiec,5-inny
+%
+%PODSTAWOWE PARAMETRY GEOMETRYCZNE KADLUBA
+dlugosc= 185
+szerokosc= 24
+zanurzenie= 11
+cB= 0.8 //wspolczynnikPelnotliwosci
+%ZAAWANSOWANE PARAMETRY GEOMETRYCZNE KADLUBA
+powierzchniaZwilzona= 11111
+%RAMIONA MOMENTOW BEZWLADNOSCI
+%momenty liczone sa ze wzoru 1/16*m*rNN^2
+rXX= 13.5
+rYY= 41
+rZZ= 41
+%WPOLRZEDNE SRODKA CIEZKOSCI
+xG= 0 //od midshipu
+yG= 0 //od plaszczyzny symetrii
+zG= 5.5 //od plaszczyzny podstawowej
+%PARAMETRY HYDROSTATYCZNE
+GM= 0
+KG= 0
+%PARAMETRY WIETRZNE
+sA= 0 //powierzchniaNawietrzna
+xAir= 0 //od midshipu
+yAir= 0 //od plaszczyzny symetrii
+zAir= 15 //od plaszczyzny podstawowej
+%PARAMETRY SRUBY
+srednica= 5.85
+predkoscObrotu= 2 //[1/s]
+kT0= 0.323
+kT1= -0.232
+kT2= -0.22
+%PARAMETRY STERU
+%WSPOLCZYNNIKI HYDRODYNAMICZNE
+Xuu= -0.0101
+Xvv= -0.061
+Xvr= 0.09
+Xrr= -0.0008
+Xvvvv= 0.41
+Yv= -0.332
+Yr= 0.062
+Yvvv= -0.946
+Yrrr= -0.038
+Yvrr= -0.511
+Yvvr= -0.1
+Nv= -0.12
+Nr= -0.045
+Nvvv= -0.11
+Nrrr= -0.03
+Nvvr= -0.6
+Nvrr= -0.21
