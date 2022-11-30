@@ -13,7 +13,7 @@
 8.draught= 3.14
 9.cB= 0.62 //wspolczynnik pelnotliwosci podwodzia/block Coefficient
 10.cM= 0.91 //midship section coefficient
-11.defSpeed= 5.81
+11.defSpeed= 5.91
 12.pusty= 0
 %ZAAWANSOWANE PARAMETRY GEOMETRYCZNE KADLUBA
 13.wetSurface= 672
@@ -99,8 +99,8 @@
 84.pusty= 0
 85.pusty= 0
 %RUCH I STRUMIEÑ
-86.wakeFraction= 0.24
-87.thrustCoefficient= 0.2
+86.wakeFraction= 0.18
+87.thrustCoefficient= 0.18
 88.pusty= 0
 89.pusty= 0
 90.pusty= 0

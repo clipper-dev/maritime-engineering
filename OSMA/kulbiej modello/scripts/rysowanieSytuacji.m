@@ -1,6 +1,6 @@
 clc;clear;close all;
 
-[a,b]=navigationalSituation(25);
+[a,b]=navigationalSituation(37);
 
 cpaObrys=cpaOutline(a,b,1);
 disp(['Pozycja A to P=(' num2str(a.x) ',' num2str(a.y) ').']);

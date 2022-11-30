@@ -1,15 +1,38 @@
-clear; clc
-%statki
-a.x=514;
-a.y=-3.5;
-a.h=343/57.3;
-b.x=558;
-b.y=17;
-b.h=225/57.3;
+%% Wczytywanie danych
+clc;clear all; close all;
+% current
+%
+% loading ships data
+[a,b]=navigationalSituation(38);
 
-% przesuniecie
-b.x=b.x-a.x;
-b.y=-(b.y-a.y);
-a.x=0;
-a.y=0;
-
+% create two dimentiional array for data
+res = zeros(10000,10);
+i = 1;
+t=1;
+tic
+skip=1203;
+while true
+    for j=1:skip
+    a = a.calculateMovement(1,-1);
+    b = b.calculateMovement(1,-1);
+        i = i + 1;
+    end
+    wynik = hdgChangeDynamic(a,b,1852,1/57.3,true,35)
+    if wynik == false || wynik == true
+        break
+    end
+    res(t,1) = i;
+    res(t,2) = wynik;
+    res(t,3) = wynik + a.heading;
+    res(t,4) = (wynik + a.heading) * 57.3;
+    res(t,5) = wynik * 57.3;
+    res(t,6) = a.heading;
+    res(t,7) = distance(a,b);
+    
+    t=t+1;
+    if i == 10000
+        break
+    end
+end
+toc
+disp("Fini")

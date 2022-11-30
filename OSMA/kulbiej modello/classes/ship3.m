@@ -1,5 +1,5 @@
 classdef ship3
-    %SHIPCLASS Obiekt klasy statek do wywo³ywania w symulacjach
+    %SHIPCLASS Obiekt klasy statek do wywoï¿½ywania w symulacjach
     %   Detailed explanation goes here
     
     properties
@@ -8,7 +8,7 @@ classdef ship3
         outlineCode='rect'
         outlineX
         outlineY
-        %% WEKTOR STANU W UK£ADZIE INERCJALNYM
+        %% WEKTOR STANU W UKï¿½ADZIE INERCJALNYM
         vx
         vNS
         vEW
@@ -27,20 +27,20 @@ classdef ship3
         ey
         ez
         speedExp
-        %% WEKTOR STANU W UK£ADZIE NIEINERCJALNYM
+        %% WEKTOR STANU W UKï¿½ADZIE NIEINERCJALNYM
         x
         y
         z
         pitch
         roll
         heading
-        %% STA£E I PRZELICZNIKI
+        %% STAï¿½E I PRZELICZNIKI
         pi = 3.1415;
         waterDensity = 1025;
         airDensity = 0.0013;
-        %% DANE STERUJ¥CE
+        %% DANE STERUJï¿½CE
         
-        hydroCoefficientLevel %jeœli "0" to uproszczone liniowe, jeœli "1" to nieliniowe proste, jeœli "2" to nieliniowe z³o¿one
+        hydroCoefficientLevel %jeï¿½li "0" to uproszczone liniowe, jeï¿½li "1" to nieliniowe proste, jeï¿½li "2" to nieliniowe zï¿½oï¿½one
         %% PODSTAWOWE DANE IDENTYFIKACYJNE
         name
         shipMMSI
@@ -49,14 +49,14 @@ classdef ship3
         length
         breadth
         draught
-        cB %wspó³czynnik pe³notliwoœci podwodzia
-        sW %powierzchnia zwil¿ona kad³uba
-        xG  %wspó³rzêdna œrodka ciê¿koœci od midshipu
+        cB %wspï¿½czynnik peï¿½notliwoï¿½ci podwodzia
+        sW %powierzchnia zwilï¿½ona kadï¿½uba
+        xG  %wspï¿½rzï¿½dna ï¿½rodka ciï¿½koï¿½ci od midshipu
         yG
-        zG %wspó³rzena œrodka ciê¿koœci od p³aszczyzny podstawowej
-        GM  %pocz¹tkowa wysokoœæ metacentryczna
+        zG %wspï¿½rzena ï¿½rodka ciï¿½koï¿½ci od pï¿½aszczyzny podstawowej
+        GM  %poczï¿½tkowa wysokoï¿½ï¿½ metacentryczna
         KG %wzniesienie punktu metacentrycznego
-        rXX %ramienia momentów bezw³adoœci masy wokó³ osi x y z
+        rXX %ramienia momentï¿½w bezwï¿½adoï¿½ci masy wokï¿½ osi x y z
         rYY
         rZZ
         % air resistance
@@ -69,15 +69,15 @@ classdef ship3
         cAy
         cAz
         
-        %% DANE PÊDNIKA / PROPELLER DETAILS
-        propellerDiameter %œrednica
+        %% DANE Pï¿½DNIKA / PROPELLER DETAILS
+        propellerDiameter %ï¿½rednica
         propellerRotation
         pd %
         AeA0 %
         propellerZ %liczba ostrzy
-        propellerNo %liczba œrub
-        xP %wspó³rzêdna po³o¿enia œruby od midshipu
-        kT0 %wspó³rzêdne wielomianu drugiego stopnia którym aproksymuje siê krzyw¹ charakterystyki œruby
+        propellerNo %liczba ï¿½rub
+        xP %wspï¿½rzï¿½dna poï¿½oï¿½enia ï¿½ruby od midshipu
+        kT0 %wspï¿½rzï¿½dne wielomianu drugiego stopnia ktï¿½rym aproksymuje siï¿½ krzywï¿½ charakterystyki ï¿½ruby
         kT1 
         kT2
         thrustDeduction
@@ -112,7 +112,7 @@ classdef ship3
         betaR
         cTH
         cTHDrop
-        % jakieœ tam wspó³czynniki korekcyjne
+        % jakieï¿½ tam wspï¿½czynniki korekcyjne
         tR
         aH
         xR
@@ -146,7 +146,7 @@ classdef ship3
         N_vrr
         N_vvr
         hydroSet
-        %% MASA, MASY DODANE, MOMENTY BEZW£ADNOŒCI I MOMENTY BEZW£ADNOŒCI DODANE
+        %% MASA, MASY DODANE, MOMENTY BEZWï¿½ADNOï¿½CI I MOMENTY BEZWï¿½ADNOï¿½CI DODANE
         m
         Ixx
         Iyy 
@@ -166,7 +166,7 @@ classdef ship3
         m51
              
         %% DYNAMIKA
-        %macierze- masy, przyspieszeñ, si³, coriolisa, prêdkoœci
+        %macierze- masy, przyspieszeï¿½, siï¿½, coriolisa, prï¿½dkoï¿½ci
         M
         Acc
         P
@@ -177,7 +177,7 @@ classdef ship3
         Ppropeller
         Pwave
         Pair
-        % si³y
+        % siï¿½y
         ForceX
         Xhull
         Xpropeller
@@ -200,7 +200,7 @@ classdef ship3
         %% KINEMATYKA
         speed
         driftAngle
-        %% ŒRODOWISKO
+        %% ï¿½RODOWISKO
         isShallow
         depth
         isWeather
@@ -219,11 +219,11 @@ classdef ship3
             s.shipMMSI = shipData(1);
             s.shipType = shipData(2);
             s.outlineCode = outlineCode;
-            %% DANE STERUJ¥CE
+            %% DANE STERUJï¿½CE
             s.rudderAngle=0;
             s.rudderAngleSet = steeringVector(2)/57.3;
             s.propellerRotation = shipData(53)*steeringVector(1)/100;
-            %% ŒRODOWISKO
+            %% ï¿½RODOWISKO
             s.isWeather = enviromentVector.isWeather;
             s.weather = enviromentVector.weather;
             s.isShallow = enviromentVector.isShallow;
@@ -392,7 +392,7 @@ classdef ship3
                 s.N_vvr =shipVector.ownSet(15);
                 s.N_vrr =shipVector.ownSet(16);
             end
-            % Uzupe³nienie zbioru wspó³czynników hydrodynamicznych
+            % Uzupeï¿½nienie zbioru wspï¿½czynnikï¿½w hydrodynamicznych
             s.hydroSet(1)=s.X_vv;
             s.hydroSet(2)=s.X_vr;
             s.hydroSet(3)=s.X_rr;
@@ -410,7 +410,7 @@ classdef ship3
             s.hydroSet(15)=s.N_vvr;
             s.hydroSet(16)=s.N_vrr;
             
-             % MASA, MASY DODANE, MOMENTY BEZW£ADNOŒCI I MOMENTY BEZW£ADNOŒCI DODANE
+             % MASA, MASY DODANE, MOMENTY BEZWï¿½ADNOï¿½CI I MOMENTY BEZWï¿½ADNOï¿½CI DODANE
             s.m = shipData(24);
             s.Ixx = s.m * s.rXX * s.rXX;
             s.Iyy = s.m * s.rYY * s.rYY;
@@ -429,7 +429,7 @@ classdef ship3
             s.m51 = shipData(36);
             
             %% KONTUR / OBRYS
-            if outlineCode == "rect"
+            if  outlineCode == 0
                 s.outlineX = zeros(5);
                 s.outlineY = zeros(5);
                 s.outlineX(1)=s.length/2;
@@ -446,7 +446,7 @@ classdef ship3
                                 
                 s.outlineX(5)=s.length/2;
                 s.outlineY(5)=-s.breadth/2;   
-            elseif outlineCode == "diamond"
+            elseif outlineCode == 2
                 s.outlineX = zeros(8);
                 s.outlineY = zeros(8);
                 s.outlineX(1)=s.length/2;
@@ -472,7 +472,7 @@ classdef ship3
                 
                 s.outlineX(8)=0.8*s.length/2;
                 s.outlineY(8)=-s.breadth/2;
-            elseif    outlineCode == "true"
+            elseif outlineCode == 1
                 nameStr=s.name+'Obrys.mat';
                 file = matfile(nameStr);
                 wynik = file.wynik;
@@ -561,6 +561,10 @@ classdef ship3
         function s = setRudderOrder(obj,rudder)
             obj.rudderAngleSet = rudder;
             s=obj;
+        end
+        function s = setHeading(obj, heading)
+            obj.heading = heading;
+            s = obj;
         end
         function s = updateShip(obj,newStateVector)
             obj.x = newStateVector(1);
@@ -656,7 +660,7 @@ classdef ship3
             disp = obj.length * obj.breadth * obj.draught * obj.cB * obj.waterDensity;
         end
         
-        %% pojedyncze wyliczenia si³ i momentów
+        %% pojedyncze wyliczenia siï¿½ i momentï¿½w
         function f = forceHull(obj, vx, vy, wz)
             f=[0;0;0];
             s=sqrt(vx^2+vy^2);
@@ -763,7 +767,7 @@ classdef ship3
             %N
             f(3) = -0.5*f(2);
         end
-        %% CA£OŒCIOWE OBLICZENIA HYDRODYNAMICZNE
+        %% CAï¿½Oï¿½CIOWE OBLICZENIA HYDRODYNAMICZNE
         function c = calculateDynamics(obj,timeStep)
             %% GENERAL
             obj.speed = sqrt(obj.vx*obj.vx+obj.vy*obj.vy);
@@ -814,7 +818,7 @@ classdef ship3
             else
             fBeta = (2.718^(-obj.rudderC1*abs(betaP)))*(obj.rudderC2Neg-1);                
             end
-            obj.wakeFractionNew = 1 - (1+fBeta)*(1-obj.wakeFraction);
+            obj.wakeFractionNew = obj.wakeFraction; %1 - (1+fBeta)*(1-obj.wakeFraction);
             if obj.propellerRotation == 0 || 0 >= obj.vx
                 obj.propellerJ = 0;
             else
@@ -1102,7 +1106,7 @@ classdef ship3
             c=s;
         end
         %% integracja
-        function c = calculateMovement(obj,timeStep, method)
+        function c = calculateMovement(obj,timeStep,method)
            obj = obj.updateRudder(timeStep);
            if(method == -1)
                %% KINEMATIC        
@@ -1113,7 +1117,7 @@ classdef ship3
                %% EULER EXPLICIT           
                obj = obj.calculateDynamics();
                obj = obj.calculateAccelerations3();
-               %prêdkoœci
+               %prï¿½dkoï¿½ci
                obj.vx=obj.vx+obj.ax*timeStep;
                obj.vy=obj.vy+obj.ay*timeStep;
                obj.wz=obj.wz+obj.ez*timeStep;
@@ -1131,14 +1135,14 @@ classdef ship3
                axPrev = obj.ax;
                ayPrev = obj.ay;
                ezPrev = obj.ez;
-               obj = obj.calculateDynamics();
+               obj = obj.calculateDynamics2();
                obj = obj.calculateAccelerations3();
-               %prêdkoœci
+               %prï¿½dkoï¿½ci
                obj.vx=obj.vx+obj.ax*timeStep;
                obj.vy=obj.vy+obj.ay*timeStep;
                obj.wz=obj.wz+obj.ez*timeStep;  
                %ponownie
-               obj = obj.calculateDynamics();
+               obj = obj.calculateDynamics3();
                obj = obj.calculateAccelerations3();
                obj.vx=vxPrev+obj.ax*timeStep;
                obj.vy=vyPrev+obj.ay*timeStep;
@@ -1157,9 +1161,9 @@ classdef ship3
                axPrev = obj.ax;
                ayPrev = obj.ay;
                ezPrev = obj.ez;
-               obj = obj.calculateDynamics();
+               obj = obj.calculateDynamics3();
                obj = obj.calculateAccelerations3();
-               %prêdkoœci
+               %prï¿½dkoï¿½ci
                obj.vx=obj.vx+0.5*(obj.ax+axPrev)*timeStep;
                obj.vy=obj.vy+0.5*(obj.ay+ayPrev)*timeStep;
                obj.wz=obj.wz+0.5*(obj.ez+ezPrev)*timeStep;
@@ -1181,7 +1185,7 @@ classdef ship3
                k1vy=timeStep*obj.ay;
                k1wz=timeStep*obj.ez;
                
-               obj = obj.calculateDynamics();
+               obj = obj.calculateDynamics3();
                obj = obj.calculateAccelerations3();
                
                obj.vx=obj.vx+k1vx;
@@ -1193,7 +1197,7 @@ classdef ship3
                k2vy=timeStep*obj.ay;
                k2wz=timeStep*obj.ez;
                
-               %prêdkoœci
+               %prï¿½dkoï¿½ci
                obj.vx=obj.vx+0.5*(k1vx+k2vx);
                obj.vy=obj.vy+0.5*(k1vy+k2vy);
                obj.wz=obj.wz+0.5*(k1wz+k2wz); 
@@ -1216,7 +1220,7 @@ classdef ship3
                k1vy=timeStep*obj.ay;
                k1wz=timeStep*obj.ez;
                
-               obj = obj.calculateDynamics();
+               obj = obj.calculateDynamics3();
                obj = obj.calculateAccelerations3();
                
                obj.vx=obj.vx+k1vx;
@@ -1228,7 +1232,7 @@ classdef ship3
                k2vy=timeStep*obj.ay;
                k2wz=timeStep*obj.ez;
                
-               %prêdkoœci
+               %prï¿½dkoï¿½ci
                obj.vx=obj.vx+0.5*(k1vx+k2vx);
                obj.vy=obj.vy+0.5*(k1vy+k2vy);
                obj.wz=obj.wz+0.5*(k1wz+k2wz); 
