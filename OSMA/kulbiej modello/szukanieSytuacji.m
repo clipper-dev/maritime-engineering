@@ -12,7 +12,7 @@ velocityStep = 0.1;
 [a,b]=navigationalSituation(38);
 situations = zeros(10);
 
-for x=-gridX:gridX
+for x=0:gridX
     for y=-gridY:gridY
         % nawigator
         b = shipDefault3('nawigator','b',2);

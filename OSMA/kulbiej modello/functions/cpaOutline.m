@@ -13,7 +13,7 @@ function c = cpaOutline(ship1, ship2,timeStep)
        y2=y2+ship2.vx*timeStep*sin(ship2.heading)+ship2.vy*timeStep*cos(ship2.heading);
        
        d=distanceOutline(x1,y1,ship1.heading,x2,y2,ship2.heading,ship1,ship2);
-       if d>previousDistance
+       if or(d <=0, d>previousDistance)
            c=previousDistance;
            break;
        else
